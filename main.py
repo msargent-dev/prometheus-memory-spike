@@ -41,3 +41,12 @@ for item in data['data']['result']:
     # May need additional fields so memory tracking can be linked
     # to a specific repo's tests.
     print(item['metric']['container'], item['value'][1])
+
+# Additional queries can also be run against prometheus to capture additional memory metrics.
+# Options are available here: https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md
+#
+# Examples I have come across call out `container_memory_rss` as something to potentially monitor
+# alongside `container_memory_working_set_bytes`.
+#
+# We can also run a query to get the average memory usage in addition to the maximum memory usage if
+# that could be useful to log.
