@@ -1,0 +1,18 @@
+name: ingest-data
+on:
+  workflow_dispatch
+
+jobs:
+  Ingest-Data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Call Test Action
+        uses: msargent-dev/prometheus-memory-spike/.github/actions/quest-db.yml@main
+        with:
+          bin-name: test
+          size: 10
+        
+      
