@@ -22,5 +22,5 @@ runs:
         curl -v -i -X POST \
         "http://questdb.zp-ads-monitoring.k3s-dev-poc.ra-digip.net:80/write" \
         --data-binary \
-        "test_ingest,project_name=${{ inputs.bin-name }} size=${{ inputs.size }}"
+        "test_ingest,project_name=${{ inputs.bin-name }} size=${{ inputs.size }} $(date +%s)"
       shell: bash
