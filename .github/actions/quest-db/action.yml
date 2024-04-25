@@ -27,4 +27,4 @@ runs:
 
     - name: "Run python tool"
       needs: post
-      run: python3 main.py -n zt-ateam-sys-test-01 -t $(date +%s) -l 1h -r test-repo
+      run: python3 tmp/main.py -n zt-ateam-sys-test-01 -t $(date +%s) -l 1h -r test-repo
