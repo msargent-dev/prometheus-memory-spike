@@ -24,3 +24,7 @@ runs:
         --data-binary \
         "test_ingest,project_name=${{ inputs.bin-name }} size=${{ inputs.size }} $(date +%s)"
       shell: bash
+
+    - name: "Run python tool"
+      needs: post
+      run: python main.py -n zt-ateam-sys-test-01 -t $(date +%s) -l 1h -r test-repo
