@@ -1,0 +1,34 @@
+name: 'questdb-post-csv'
+description: 'Post data to questdb'
+inputs:
+  namespace:
+    description: "Namespace to query for memory usage"
+    required: true
+  end-timestamp:
+    description: "The last instance of the range to query"
+    required: true
+  length:
+    description: "Length of the period to capture using Prometheus range syntax"
+    required: true
+  repository-name:
+    description: "Name of calling repository"
+    required: true
+
+
+runs:
+  using: 'composite'
+  steps:
+    - name: "Query Memory Usage"
+      id: memory-query
+      run: |
+        python3 main.py -n ${{ inputs.namespace }} -t ${{ inputs.end-timestamp }} -l ${{ inputs.length }} -r ${{ inputs.repository-name }} -o memory-output.txt
+      shell: bash
+  
+    - name: "Post data to questdb"
+      id: post
+      run: |
+        curl -v -i -X POST \
+        "http://questdb.zp-ads-monitoring.k3s-dev-poc.ra-digip.net:80/write" \
+        --data-binary \
+        "$(cat memory-output.txt)"
+      shell: bash

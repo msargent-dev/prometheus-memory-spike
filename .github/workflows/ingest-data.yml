@@ -12,13 +12,10 @@ jobs:
           repository: 'msargent-dev/prometheus-memory-spike'
           path: 'tmp'
 
-      - name: Call Test Action
-        run:
-          ls tmp/.github
-
       - name: run python workflow
-        uses: msargent-dev/prometheus-memory-spike/.github/actions/quest-db@main
+        uses: msargent-dev/prometheus-memory-spike/.github/actions/quest-db-text@main
         with:
-          bin-name: 'test-bin'
-          size: 10
-      
+          namespace: 'zt-ateam-sys-test-01'
+          end-timestamp: '2024-04-23T17:25:59Z'
+          length: '1h'
+          repository-name: 'test-run-repo'

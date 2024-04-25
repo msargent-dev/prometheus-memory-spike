@@ -9,6 +9,7 @@ parser.add_argument('-t', '--timestamp', help="Timestamp representing the end of
 parser.add_argument('-n', '--namespace', help="Namespace to query against", required=True)
 parser.add_argument('-l', '--lookback', help="A prometheus time duration representing the length of the period to query", required=True)
 parser.add_argument('-r', '--repository', help="Repository where the tests being measured were run", required=True)
+parser.add_argument('-o', '--output', help="Output text file name", required=True)
 args = parser.parse_args()
 
 # Use the `query` endpoint and turn the instance query into a range query with `[]` syntax.
@@ -35,12 +36,10 @@ data = json.loads(response_text)
 
 print("Tests were reportedly run in the " + args.repository + " repository.")
 
-# When running for real, land data in QuestDB.
-for item in data['data']['result']:
-    # Displaying container name and memory usage in bytes.
-    # May need additional fields so memory tracking can be linked
-    # to a specific repo's tests.
-    print(item['metric']['container'], item['value'][1])
+# Write Influx Line Protocol to a text file
+with open(args.output, 'w') as f:
+    for item in data['data']['result']:
+        f.write(f"other_table,repository={args.repository},container={item['metric']['container']} container_memory_working_set_bytes={item['value'][1]}\n")
 
 # Additional queries can also be run against prometheus to capture additional memory metrics.
 # Options are available here: https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md
