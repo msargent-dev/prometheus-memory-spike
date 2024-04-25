@@ -18,10 +18,16 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: 'msargent-dev/prometheus-memory-spike'
+        path: 'tmp'
+      id: checkout
+
     - name: "Query Memory Usage"
       id: memory-query
       run: |
-        python3 main.py -n ${{ inputs.namespace }} -t ${{ inputs.end-timestamp }} -l ${{ inputs.length }} -r ${{ inputs.repository-name }} -o memory-output.txt
+        python3 tmp/main.py -n ${{ inputs.namespace }} -t ${{ inputs.end-timestamp }} -l ${{ inputs.length }} -r ${{ inputs.repository-name }} -o memory-output.txt
       shell: bash
   
     - name: "Post data to questdb"

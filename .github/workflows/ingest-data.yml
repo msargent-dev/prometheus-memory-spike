@@ -7,11 +7,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: 'msargent-dev/prometheus-memory-spike'
-          path: 'tmp'
-
       - name: run python workflow
         uses: msargent-dev/prometheus-memory-spike/.github/actions/quest-db-text@main
         with:
