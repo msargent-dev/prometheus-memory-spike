@@ -12,8 +12,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: "echo params"
+      run: |
+        echo "${{ inputs.bin-name }} ${{ inputs.size }}"
 
-    - name: "Post data to questdb" 
+    - name: "Post data to questdb"
       id: post
       run: |
         curl -i -X POST \
