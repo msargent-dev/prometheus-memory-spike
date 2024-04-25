@@ -66,7 +66,6 @@ def parse_arguments():
     parser.add_argument('-l', '--lookback',
                         help="A prometheus time duration representing the length of the period to query", required=True)
     parser.add_argument('-r', '--repository', help="Repository where the tests being measured were run", required=True)
-    parser.add_argument('-o', '--output', help="Output text file name", required=True)
     return parser.parse_args()
 
 
