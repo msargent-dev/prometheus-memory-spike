@@ -14,7 +14,7 @@ the example data to QuestDB.
 
 ### Example Run
 
-`python workflow-script.py -n zt-ateam-sys-test-01 -t 2024-04-23T17:25:59Z -l 1h -r test-repo -o output.txt`
+`python workflow-script.py -n zt-obt-sys-test-01 -t 2024-05-05T17:25:59Z -l 1h -r test-repo -o output.txt`
 
 ### Testing workflow locally
 
@@ -34,6 +34,6 @@ sends the result off to QuestDB. If you run this script, results will end up in 
 
 ### Example Run
 
-`python workflow-script.py -n zt-ateam-sys-test-01 -t 2024-04-23T17:25:59Z -l 1h -r test-repo`
+`python workflow-script.py -n zt-ateam-sys-test-01 -t 2024-05-05T17:25:59Z -l 1h -r test-repo`
 
 ### Testing workflow locally
